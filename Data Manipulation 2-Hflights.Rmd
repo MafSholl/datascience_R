@@ -1,0 +1,70 @@
+---
+title: "Hflights_dplyr"
+author: "Adeshola"
+date: "2022-09-16"
+output: pdf_document
+---
+
+```{r}
+library(hflights)
+data("hflights")
+View(hflights)
+filter(hflights,Year == 2011, Month == 2)
+```
+
+```{r}
+filtered_flights <- filter(hflights, Dest %in% c("FLL","IAH"))
+view(filtered_flights)
+```
+
+```{r}
+column_11_to_16 <- filter(hflights, between(Distance, 224, 944))[,11:16]
+View(column_11_to_16)
+```
+
+```{r}
+april_flights <- filter(hflights, Year == 2011, Month == 4)
+View(april_flights)
+april_subset <- filter(april_flights, UniqueCarrier %in%  c("AA", "WN"))
+View(april_subset)
+```
+
+```{r}
+arrngd_1 <- arrange(hflights, Year, Month)
+View(arrngd_1)
+arrngd_1Dsc <- arrange(hflights, Year, desc(Month))
+View(arrngd_1Dsc)
+```
+
+```{r}
+select_hflights <- select(hflights, Year, Month, FlightNum, AirTime)[1:4,]
+View(select_hflights)
+```
+
+```{r}
+select_2 <- select(hflights, tail_num = TailNum)[1:5,]
+
+```
+
+```{r}
+ren_1 <- rename(hflights, tail_num = TailNum)
+ren_1
+```
+
+```{r}
+vars <- c("Year", "Month", "DayOfMonth", "DayOfMonth", "ArrTime")
+s_1 <- select(hflights, one_of(vars))
+head(s_!)[1:6,]
+```
+
+```{r}
+mut_hflights <- hflights %>% select(ends_with("Delay"), Distance, AirTime) %>% mutate(TimeGain = ArrDelay -DepDelay,Speed = Distance/AirTime * 60)
+mut_hflights
+mut_hflights[1:10, ]
+```
+
+```{r}
+sumarz <- summarise(hflights, Delay = sum(DepDelay, na.rm = T))
+View(sumarz)
+groupBy_sumarz <- hflights %>% group_by(Year, Month, DayofMonth) %>% summarise(delay = mean(DepDelay, na.rm =T))
+```

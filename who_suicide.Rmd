@@ -1,0 +1,12 @@
+---
+title: "who_suicide"
+author: "Adeshola"
+date: "2022-09-05"
+output: pdf_document
+---
+
+```{r}
+who_suicide <- read.csv(file.choose(), header=TRUE, sep = ",", strip.white = TRUE, na.strings = "")
+who_suicide
+head(who_suicide)
+```

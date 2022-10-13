@@ -1,0 +1,12 @@
+---
+title: "Data_Manipulation"
+author: "Adeshola"
+date: "2022-09-16"
+output: pdf_document
+---
+library(readxl)
+library(tidyverse)
+
+```{r}
+dta <- read_excel("C:/Users/3TL/Desktop/;Semicolon/DataScience/mbta.xlsx")
+```

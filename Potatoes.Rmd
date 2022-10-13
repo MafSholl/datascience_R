@@ -1,0 +1,19 @@
+---
+title: "Potato"
+author: "Adeshola"
+date: "2022-09-05"
+output: pdf_document
+---
+
+```{r}
+potato_csv <- read.csv("C:/Users/3TL/Desktop/;Semicolon/DataScience/potatoes.txt")
+potato_csv
+potato_raw <- read.delim("C:/Users/3TL/Desktop/;Semicolon/DataScience/potatoes.txt")
+potato_raw
+potato <- read.delim("C:/Users/3TL/Desktop/;Semicolon/DataScience/potatoes.txt", sep = "\t", header = F)
+potato
+#rownames = c("M", "N", "O")
+head(potato[ , 4:8])
+colnames(potato) <- c("X", "Y", "Z", "A", "B")
+
+```

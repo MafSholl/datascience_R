@@ -1,0 +1,78 @@
+---
+title: "connecting_to_database"
+author: "Adeshola"
+date: "2022-09-05"
+output: pdf_document
+---
+```{r}
+#connecting to our db. Click packages and mark our DBI & MySQL packages 
+host <- "courses.csrrinzqubik.us-east-1.rds.amazonaws.com"
+connect <- dbConnect(RMySQL::MySQL(), dbname = "tweater", host = host, port = 3306, user = "student", password = "datacamp")
+```
+
+```{r}
+#creating a table
+tables <- dbListTables(connect)
+tables
+```
+
+```{r}
+connect <- dbConnect(RMySQL::MySQL(), dbname = "bookstores", host = localhost, port = 3306, user = "user", password = "datacamp")
+```
+
+```{r}
+#class task - connecting to Amazon
+host <- "car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com"
+connect1 <- dbConnect(RMySQL::MySQL(), dbname = "car_simulation_station", host = host, port = 3306, user = "datacamp_user", password = "learn tabular data for fun and profit")
+#read the tables in datatable
+tables <- dbListTables(connect1)
+tables
+#print the tables
+table1 <- dbReadTable(connect1, "adhd_home_cleaned")
+table1
+table2 <- dbReadTable(connect1, "bapq_father_self_report_cleaned")
+table2
+#save the tables
+write.csv(table1, "C:/Users/3TL/Desktop/;Semicolon/DataScience/Amazonfile1.csv")
+write.csv(table2, "C:/Users/3TL/Desktop/;Semicolon/DataScience/Amazonfile2.csv")
+```
+
+```{r}
+#reading an spss file
+spssfile <- read_sav("C:/Users/3TL/Desktop/;Semicolon/DataScience/personality.sav")
+write.csv(spssfile, "C:/Users/3TL/Desktop/;Semicolon/DataScience/localpersonality.csv")
+```
+
+```{r}
+#Plotting a Boxplot
+hs <- read.csv('https://raw.githubusercontent.com/mGalarnyk/Python_Tutorials/master/Kaggle/BreastCancerWisconsin/data/data.csv', header=T)
+str(hs)
+boxplot(radius_mean~diagnosis, data = hs, main="Boxplot of Price based on HS Status")
+```
+
+```{r}
+#Plotting a Scatterplot
+houz <- read.csv("C:/Users/3TL/Desktop/;Semicolon/DataScience/house.csv")
+houz
+plot(houz$SQFT, houz$Price, xlab = "SQFT", ylab = "Price", main= "ScatterPlot of Price and SQFT")
+```
+
+```{r}
+hist(houz$Price, xlab="Price", main="Histogram of Price")
+```
+
+```{r}
+#Classtask: Given cancer.csv, child_data.csv, clean and plot the histogram and boxplot of both dataset and give a brief analysis
+
+cancer <- read.csv("C:/Users/3TL/Desktop/;Semicolon/DataScience/cancer.csv")
+cancer
+boxplot(radius_mean~diagnosis, data = cancer, main="Boxplot of Price based on Cancer Status")
+hist(cancer$area_mean, xlab="area_mean", main= "Histogram of area mean")
+hist(cancer$radius_mean, xlab = "radius_mean", main = "Histogram of area mean")
+
+childdata <- read_sav("C:/Users/3TL/Desktop/;Semicolon/DataScience/child_data.sav")
+childdata
+boxplot(AGE~READ_AB, data = childdata, main="Boxplot of age read a/b based on age")
+hist(childdata$AGE, xlab = "AGE", main= "Histogram of age")
+
+```
